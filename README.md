@@ -1,3 +1,3 @@
 # 🛍️ Sistema de Gerenciamento de Loja
 
-Este projeto consiste no desenvolvimento de um sistema orientado a objetos em **Python** para o **controle e gerenciamento de uma pequena loja**, focando no gerenciamento de **estoque** e na **movimentação de itens**.
+Desenvolver um sistema orientado a objetos em **python** para o contrle e gerenciamento de uma pequena loja, bem como seu estoque (entrada, local de armazenamento, saída) e a movimentação desses itens (Local de saída, quem fez a retirada).
