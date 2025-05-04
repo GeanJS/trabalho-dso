@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, nome: str, descricao: str, valor_entrada: float,       margem_lucro: float, quantidade_disponivel: int):
+    def __init__(self, nome: str, descricao: str, valor_entrada: float, margem_lucro: float, quantidade_disponivel: int):
         self.__nome = nome
         self.__descricao = descricao
         self.__valor_entrada = valor_entrada
