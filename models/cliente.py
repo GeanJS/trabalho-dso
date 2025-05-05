@@ -2,13 +2,11 @@ from datetime import datetime
 from models.pessoa import Pessoa
 
 class Cliente(Pessoa):
-    def __init__(self, nome: str, telefone: str, email: str, endereco: str, cpf: str, data_cadastro: datetime, descricao: str):
+    def __init__(self, nome: str, telefone: str, email: str, endereco: str, cpf: str, data_cadastro: datetime):
         super().__init__(nome, telefone, email, endereco, cpf)
         self.__data_cadastro = data_cadastro
-        self.__descricao = descricao
         self.__historico_de_compras = []
         
-    
     @property
     def data_cadastro(self) -> str:
         return self.__data_cadastro
