@@ -1,30 +1,35 @@
-from view.tela_cliente import TelaCliente
 from models.cliente import Cliente
+from view.tela_cliente import TelaCliente
 
 class ControladorCliente:
     def __init__(self, controlador_sistema):
-        self.__cliente = []
+        self.__clientes = []
         self.__controlador_sistema = controlador_sistema
         self.__tela_cliente = TelaCliente()
-        
-    def busca_por_cpf(self, cpf: str):
-        for cliente in self.__cliente:
-            if cliente.cpf == cpf:
-                return cliente
-        return None
     
-    def cadastra_cliente(self):
-        pass
+    def abre_menu(self):
+        while True:
+            opcao = self.__tela_cliente.menu_cliente()
+            match opcao:
+                case 1:
+                    self.cadastrar_cliente()
+                case 2:
+                    self.listar_clientes()
+                case 0:
+                    print("\nRetornando ao menu principal!!\n")
+                    self.retornar()
+                case _:
+                    print("Opcao Invalida")
     
-    def altera_cliente(self):
-        pass
     
-    def exclui_cliente(self):
-        pass
+    def cadastrar_cliente(self):
+        dados = self.__tela_cliente.pega_dados_cliente()
+        cliente = Cliente(dados["nome"], dados["telefone"], dados["endereco"], dados["email"], dados["cpf"], dados["data"])
+        self.__clientes.append(cliente)
+        self.__tela_cliente.mostra_mensagem("Cliente cadastrado com sucesso!!")
     
-    def lista_cliente(self):
-        pass
-    
+    def listar_clientes(self):
+        self.__tela_cliente.mostra_clientes(self.__clientes)
+                
     def retornar(self):
-        self.__controlador_sistema.abre_tela()
-    
+        self.__controlador_sistema.inicializa_sistema()
