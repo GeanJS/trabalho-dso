@@ -18,10 +18,12 @@ class TelaFuncionario:
         endereco = input("Endereco do Funcionario: ")
         email = input("Email do Funcionario: ")
         cpf = input("CPF do Funcionario: ")
+        funcao = input("Função: ")
+        salario = float(input("Salario Inicial: "))
         data_contratacao = datetime.now()
 
 
-        return {"nome": nome, "telefone": telefone, "endereco": endereco, "email": email, "cpf": cpf, "data": data_contratacao}
+        return {"nome": nome, "telefone": telefone, "endereco": endereco, "email": email, "cpf": cpf, "funcao": funcao, "salario": salario, "data_contratacao": data_contratacao}
 
     def mostra_funcionarios(self, funcionarios):
         if not funcionarios:
@@ -34,7 +36,7 @@ class TelaFuncionario:
                 print(f"Endereço: {funcionario.endereco}")
                 print(f"Email: {funcionario.email}")
                 print(f"CPF: {funcionario.cpf}")
-                print(f"Data de Cadastro: {funcionario.data_cadastro.strftime('%d/%m/%Y %H:%M:%S')}")
+                print(f"Data de Contratação: {funcionario.data_contratacao.strftime('%d/%m/%Y)}')}")
                 print("==============================")
     
     def mostra_mensagem(self, mensagem):

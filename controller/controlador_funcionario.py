@@ -24,7 +24,7 @@ class ControladorFuncionario:
     
     def cadastrar_funcionario(self):
         dados = self.__tela_funcionario.pega_dados_funcionario()
-        funcionario = Funcionario(dados["nome"], dados["telefone"], dados["endereco"], dados["email"], dados["cpf"], dados["cargo"], dados["data"])
+        funcionario = Funcionario(dados["nome"], dados["telefone"], dados["endereco"], dados["email"], dados["cpf"],dados ["funcao"], dados["salario"], dados["data_contratacao"])
         self.__funcionarios.append(funcionario)
         self.__tela_funcionario.mostra_mensagem("Funcionario cadastrado com sucesso!!")
     
