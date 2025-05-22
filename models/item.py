@@ -35,7 +35,7 @@ class Item:
     
     @property
     def margem_lucro(self):
-        return self.margem_lucro
+        return self.__margem_lucro
     
     @margem_lucro.setter
     def margem_lucro(self, margem_lucro: float):

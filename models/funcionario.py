@@ -1,10 +1,10 @@
-from models import pessoa
+from models.pessoa import Pessoa#não entendi o motivo de estar dando erro em from pessoa import Pessoa
 from models import cargo
 from datetime import datetime
 
-class Funcionario(pessoa):
+class Funcionario(Pessoa):
     def __init__(self, nome: str, telefone: str, email: str, endereco: str, cpf: str, funcao:str, salario: float, data_contratacao: datetime):
-        pessoa.__init__(self, nome, telefone, email, endereco, cpf)
+        Pessoa.__init__(self, nome, telefone, email, endereco, cpf)
         cargo.__init__(self, funcao, salario)
         self.__data_contratacao = data_contratacao
         self.__historico_de_vendas = []

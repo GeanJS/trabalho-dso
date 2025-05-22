@@ -3,9 +3,11 @@ class TelaSistema:
         print("-------- Lojinhainha ---------")
         print("Escolha sua opcao")
         print("1 - Cliente")
+        print("2 - Funcionario")
+        print("3 - Itens")
         print("0 - Finalizar sistema")
-        try: 
-            return int(input("Escolha uma opcao: "))
+        try:
+            return int(input("Escolha uma opção: "))
         except ValueError:
             return -1
     

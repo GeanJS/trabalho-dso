@@ -5,6 +5,7 @@ class TelaCliente:
         print("\n--- Menu Cliente ---")
         print("1 - Cadastrar cliente")
         print("2 - Listar clientes")
+        print("3 - Editar cliente")
         print("0 - Voltar")
         try:
             return int(input("Escolha uma opção: "))
