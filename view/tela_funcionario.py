@@ -6,6 +6,7 @@ class TelaFuncionario:
         print("1 - Cadastrar funcionario")
         print("2 - Listar funcionarios")
         print("3 - Editar funcionario")
+        print("4 - Remover funcionario")
         print("0 - Voltar")
         try:
             return int(input("Escolha uma opção: "))
@@ -38,6 +39,9 @@ class TelaFuncionario:
                 print(f"CPF: {funcionario.cpf}")
                 print(f"Data de Contratação: {funcionario.data_contratacao.strftime('%d/%m/%Y)}')}")
                 print("==============================")
+    
+    def selecionar_funcionario(self):
+        return input("Digite o nome do funcionario a ser removido: ")
     
     def mostra_mensagem(self, mensagem):
         print(f"{mensagem}")

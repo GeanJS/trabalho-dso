@@ -9,14 +9,14 @@ class TelaVenda:
             return int(input("Escolha uma opção: "))
         except ValueError:
             return -1
-""" 
-    def pega_dados_venda(self):
-        data_venda = datetime.now()
-        vendedor = 
-        cliente =
-        item =
-        quantidade = int(imput("Quantidade da venda: "))
-"""   
+ 
+    # def pega_dados_venda(self):
+    #     data_venda = datetime.now()
+    #     vendedor = 
+    #     cliente =
+    #     item =
+    #     quantidade = int(imput("Quantidade da venda: "))
+   
     def mostra_todas_vendas(self, vendas):
         if not vendas:
             print("Nenhum item cadastrado.")
