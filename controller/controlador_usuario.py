@@ -2,12 +2,13 @@ from models.usuario import Usuario
 from view.tela_usuario import TelaUsuario
 
 class ControladorUsuario:
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__usuarios = [
             Usuario('admin', 'admin', 'administrador'),
             Usuario('geanjair', '123', 'funcionario'),
         ]
         self.__tela_usuario = TelaUsuario()
+        self.__controlador_sistema = controlador_sistema
         
     def iniciar(self):
         while True:
@@ -36,13 +37,14 @@ class ControladorUsuario:
                 case 3:
                     self.listar_usuarios()
                 case 0:
-                    pass
+                    print("\nRetornando ao menu principal!!\n")
+                    self.retornar()
                 
                 case _:
                     self.__tela_usuario.mostrar_mensagem("Opcao invalida.")
                     
     def cadastrar_usuario(self):
-        dados = self.__tela_usuario.pegar_dados_usuario()
+        dados = self.__tela_usuario.pegar_dados_cadastro_usuario()
         try:
             novo_usuario = Usuario(dados["nome"], dados["senha"], dados["tipo"])
             self.__usuarios.append(novo_usuario)
@@ -61,3 +63,6 @@ class ControladorUsuario:
         
     def listar_usuarios(self):
         self.__tela_usuario.listar_usuarios(self.__usuarios)
+
+    def retornar(self):
+        self.__controlador_sistema.inicia_sistema()

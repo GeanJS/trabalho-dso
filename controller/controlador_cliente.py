@@ -32,4 +32,4 @@ class ControladorCliente:
         self.__tela_cliente.mostra_clientes(self.__clientes)
                 
     def retornar(self):
-        self.__controlador_sistema.inicializa_sistema()
+        self.__controlador_sistema.inicia_sistema()

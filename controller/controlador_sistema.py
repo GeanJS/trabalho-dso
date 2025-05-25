@@ -4,15 +4,15 @@ from controller.controlador_sistema_funcionario import ControladorSistemaFuncion
 
 class ControladorSistema:
     def __init__(self):
-        self.__controlador_usuario = ControladorUsuario()
+        self.__controlador_usuario = ControladorUsuario(self)
 
     def inicia_sistema(self):
         while True:
             usuario = self.__controlador_usuario.iniciar()
 
             if usuario.tipo == 'administrador':
-                controlador_admin = ControladorSistemaAdministrador()
+                controlador_admin = ControladorSistemaAdministrador(self)
                 controlador_admin.inicializa_sistema_administrador()
             elif usuario.tipo == 'funcionario':
-                controlador_func = ControladorSistemaFuncionario()
+                controlador_func = ControladorSistemaFuncionario(self)
                 controlador_func.inicializa_sistema_funcionario()

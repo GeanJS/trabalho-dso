@@ -6,11 +6,11 @@ from controller.controlador_local_armazenamento import ControladorLocalArmazenam
 from controller.controlador_usuario import ControladorUsuario
 
 class ControladorSistemaAdministrador:
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__tela_sistema = TelaSistema()
         self.__controlador_cliente = ControladorCliente(self)
         self.__controlador_item = ControladorItem(self)
-        self.__controlador_usuario = ControladorUsuario()
+        self.__controlador_usuario = ControladorUsuario(controlador_sistema)
         self.__controlador_funcionario = ControladorFuncionario(self)
         self.__controlador_local_armazenamento = ControladorLocalArmazenamento(self)
     

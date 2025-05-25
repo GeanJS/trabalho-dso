@@ -31,4 +31,4 @@ class ControladorItem:
         self.__tela_itens.mostra_itens(self.__itens)
 
     def retornar(self):
-        self.__controlador_sistema.inicializa_sistema()
+        self.__controlador_sistema.inicia_sistema()

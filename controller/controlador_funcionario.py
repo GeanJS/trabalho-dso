@@ -32,4 +32,4 @@ class ControladorFuncionario:
         self.__tela_funcionario.mostra_funcionarios(self.__funcionarios)
                 
     def retornar(self):
-        self.__controlador_sistema.inicializa_sistema()
+        self.__controlador_sistema.inicia_sistema()
