@@ -11,6 +11,6 @@ def nao_vazio(valor):
 def confirma_acao(mensagem: str) -> bool:
     while True:
         resposta = input(f"{mensagem} (sim/nao): ").strip().lower()
-        if resposta in ("s", "n"):
-            return resposta == "s"
-        print("Por favor, responda com 's' (sim) ou 'n' (nao).")
+        if resposta in ("sim", "nao"):
+            return resposta == "sim"
+        print("Por favor, responda com sim ou nao.")

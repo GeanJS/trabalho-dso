@@ -7,10 +7,13 @@ class ControladorSistema:
     def __init__(self):
         self.__usuarios = [
             Usuario('admin', 'admin', 'administrador'),
-            Usuario('geanjair', '123', 'funcionario')
         ]
         self.__controlador_usuario = ControladorUsuario(self, self.__usuarios)
 
+    @property
+    def lista_usuarios(self):
+        return self.__usuarios
+    
     def inicia_sistema(self):
         while True:
             usuario = self.__controlador_usuario.iniciar()
