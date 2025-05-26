@@ -13,6 +13,10 @@ class ControladorUsuario:
     def iniciar(self):
         while True:
             dados = self.__tela_usuario.pegar_dados_usuario()
+            if dados is None:
+                self.__tela_usuario.mostrar_mensagem("Login cancelado")
+                return
+                
             usuario = self.__validar_login(dados["nome"], dados["senha"])
             if usuario:
                 self.__tela_usuario.mostrar_mensagem(f"\nLogin Bem-Sucedido! Bem-vindo, {usuario.nome}.")

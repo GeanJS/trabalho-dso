@@ -17,6 +17,10 @@ class ControladorFuncionario:
                     self.cadastrar_funcionario()
                 case 2:
                     self.listar_funcionarios()
+                case 3:
+                    self.editar_funcionario()
+                case 4:
+                    self.remover_funcionario()
                 case 0:
                     print("\nRetornando ao menu principal!!\n")
                     self.retornar()
