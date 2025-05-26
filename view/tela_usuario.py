@@ -40,7 +40,7 @@ class TelaUsuario:
             except ValueError:
                 print("Digite um número válido!")
         return {"nome": nome, "senha": senha, "tipo": tipo}
-                    
+                     
 
     
     def selecionar_usuario(self):

@@ -6,7 +6,7 @@ import os
 class ControladorSistemaAdministrador(ControladorSistemaFuncionario):
     def __init__(self, controlador_sistema, usuario_logado):
         super().__init__(controlador_sistema, usuario_logado)
-        self.__controlador_usuario = ControladorUsuario(self)
+        self.__controlador_usuario = ControladorUsuario(self, controlador_sistema.lista_usuarios)
         self.__controlador_funcionario = ControladorFuncionario(self)
         self.__usuario_logado = usuario_logado
         self.__controlador_sistema = controlador_sistema
