@@ -12,10 +12,9 @@ class TelaLocalArmazenamento:
         
     def pega_dados_local_armazenamento(self):
         nome = input("Nome do local de armazenamento: ")
-        descricao = input("Descrição do local de armazenamento: ")
         capacidade = int(input("Capacidade do local de armazenamento: "))
         
-        return {"nome": nome, "descricao": descricao, "capacidade": capacidade}
+        return {"nome": nome, "capacidade": capacidade}
     
     def mostra_locais_armazenamento(self, locais_armazenamento):
         if not locais_armazenamento:
@@ -24,7 +23,6 @@ class TelaLocalArmazenamento:
             for local in locais_armazenamento:
                 print("\n==============================")
                 print(f"Nome: {local.nome}")
-                print(f"Descrição: {local.descricao}")
                 print(f"Capacidade: {local.capacidade}")
                 print("==============================")
 

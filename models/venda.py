@@ -20,3 +20,11 @@ class Venda(Movimentacao):
     
     def calcula_valor_total(self):
         return self.quantidade * self.item.valor_esperado_venda()
+    
+    def retorna_dados(self):
+        dados = super().retorna_dados()
+        dados.update({
+            "tipo": "Venda",
+            "cliente": self.__cliente.nome,
+            "valor_total": self.__valor_total
+        })

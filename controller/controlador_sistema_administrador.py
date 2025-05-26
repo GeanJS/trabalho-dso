@@ -29,8 +29,12 @@ class ControladorSistemaAdministrador(ControladorSistemaFuncionario):
                 case 4:
                     self.controlador_local_armazenamento.abre_menu()
                 case 5:
-                    self.__controlador_usuario.abre_menu()
+                    self.controlador_realocacao.abre_menu()
                 case 6:
+                    self.controlador_venda.abre_menu()
+                case 7:
+                    self.__controlador_usuario.abre_menu()
+                case 8:
                     self.__controlador_sistema.inicia_sistema()
                 case 0:
                     self.encerra_sistema()

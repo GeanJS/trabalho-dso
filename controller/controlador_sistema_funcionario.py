@@ -3,6 +3,8 @@ from controller.controlador_cliente import ControladorCliente
 from controller.controlador_item import ControladorItem
 from controller.controlador_local_armazenamento import ControladorLocalArmazenamento
 from controller.controlador_usuario import ControladorUsuario
+from controller.controlador_realocacao import ControladorRealocacao
+from controller.controlador_venda import ControladorVenda
 
 class ControladorSistemaFuncionario:
     def __init__(self, controlador_sistema, usuario_logado):
@@ -12,6 +14,8 @@ class ControladorSistemaFuncionario:
         self.__controlador_cliente = ControladorCliente(self)
         self.__controlador_item = ControladorItem(self)
         self.__controlador_local_armazenamento = ControladorLocalArmazenamento(self)
+        self.__controlador_realocacao = ControladorRealocacao(self)
+        self.__controlador_venda = ControladorVenda(self)
     
     @property
     def usuario_logado(self):
@@ -33,6 +37,13 @@ class ControladorSistemaFuncionario:
     def controlador_local_armazenamento(self):
         return self.__controlador_local_armazenamento
     
+    @property
+    def controlador_realocacao(self):
+        return self.__controlador_realocacao
+    
+    @property
+    def controlador_venda(self):
+        return self.__controlador_venda
     
     
     def inicializa_sistema_funcionario(self):
@@ -46,6 +57,10 @@ class ControladorSistemaFuncionario:
                 case 3:
                     self.__controlador_local_armazenamento.abre_menu()
                 case 4:
+                    self.__controlador_realocacao.abre_menu()
+                case 5:
+                    self.__controlador_venda.abre_menu()
+                case 6:
                     self.__controlador_sistema.inicia_sistema()
                 case 0:
                     self.encerra_sistema()

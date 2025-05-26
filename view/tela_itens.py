@@ -12,7 +12,7 @@ class TelaItens:
             return -1
         
     def pega_dados_itens(self):
-        nome = input("Nome do Item: ")
+        codigo = input("Codigo do Item: ")
         descricao = input("Descricao do Item: ")
         valor_entrada = float(input("Valor de entrada do Item: "))
         margem_lucro = float(input("Margem de lucro do Item: "))
@@ -21,7 +21,18 @@ class TelaItens:
             raise ValueError("Quantidade incial tem que ser um valor maior do que zero!")
         data_cadastro = datetime.now()
     
-        return {"nome": nome, "descricao": descricao, "valor_entrada": valor_entrada, "margem_lucro": margem_lucro, "quantidade_disponivel": quantidade_disponivel, "data_cadastro": data_cadastro}
+        return {"codigo": codigo,
+                "descricao": descricao,
+                "valor_entrada": valor_entrada,
+                "margem_lucro": margem_lucro,
+                "quantidade_disponivel": quantidade_disponivel,
+                "data_cadastro": data_cadastro}
+    
+    def pega_codigo_item(self):
+        try:
+            return input("Código do Item: ")
+        except KeyboardInterrupt:
+            return None
     
     def mostra_itens(self, itens):
         if not itens:
@@ -29,7 +40,7 @@ class TelaItens:
         else:
             for item in itens:
                 print("\n==============================")
-                print(f"Nome: {item.nome}")
+                print(f"Codigo: {item.codigo}")
                 print(f"Descricao: {item.descricao}")
                 print(f"Valor de entrada: {item.valor_entrada}")
                 print(f"Margem de lucro: {item.margem_lucro}")

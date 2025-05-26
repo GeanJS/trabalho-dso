@@ -1,4 +1,5 @@
 from models.local_armazenamento import LocalArmazenamento
+from models.item import Item
 from view.tela_local_armazenamento import TelaLocalArmazenamento
 
 class ControladorLocalArmazenamento:
@@ -22,13 +23,19 @@ class ControladorLocalArmazenamento:
 
     def cadastrar_local_armazenamento(self):
         dados = self.__tela_local_armazenamento.pega_dados_local_armazenamento()
-        local_armazenamento = LocalArmazenamento(dados["nome"], dados["descricao"], dados["capacidade"])
+        local_armazenamento = LocalArmazenamento(dados["nome"], dados["capacidade"])
         self.__locais_armazenamento.append(local_armazenamento)
         self.__tela_local_armazenamento.mostra_mensagem("Novo local cadastrado com sucesso!")
 
     def listar_local_armazenamento(self):
         self.__tela_local_armazenamento.mostra_locais_armazenamento(self.__locais_armazenamento)
 
+    def buscar_local_por_nome(self, nome: str):
+        for local in self.__locais_armazenamento:
+            if local.nome == nome:
+                return local
+        return None
+    
     def retornar(self):
         usuario_logado = self.__controlador_sistema.usuario_logado
         if usuario_logado.tipo == 'administrador':
