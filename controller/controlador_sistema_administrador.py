@@ -1,33 +1,37 @@
-from view.tela_sistema import TelaSistema
-from controller.controlador_cliente import ControladorCliente
+from controller.controlador_sistema_funcionario import ControladorSistemaFuncionario
 from controller.controlador_funcionario import ControladorFuncionario
-from controller.controlador_item import ControladorItem
-from controller.controlador_local_armazenamento import ControladorLocalArmazenamento
 from controller.controlador_usuario import ControladorUsuario
+import os
 
-class ControladorSistemaAdministrador:
-    def __init__(self, controlador_sistema):
-        self.__tela_sistema = TelaSistema()
-        self.__controlador_cliente = ControladorCliente(self)
-        self.__controlador_item = ControladorItem(self)
-        self.__controlador_usuario = ControladorUsuario(controlador_sistema)
+class ControladorSistemaAdministrador(ControladorSistemaFuncionario):
+    def __init__(self, controlador_sistema, usuario_logado):
+        super().__init__(controlador_sistema, usuario_logado)
+        self.__controlador_usuario = ControladorUsuario(self)
         self.__controlador_funcionario = ControladorFuncionario(self)
-        self.__controlador_local_armazenamento = ControladorLocalArmazenamento(self)
+        self.__usuario_logado = usuario_logado
+        self.__controlador_sistema = controlador_sistema
+    
+    @property
+    def usuario_logado(self):
+        return self.__usuario_logado
     
     def inicializa_sistema_administrador(self):
         while True:
-            opcao = self.__tela_sistema.tela_opcoes_administrador()
+            os.system('cls')
+            opcao = self.tela_sistema.tela_opcoes_administrador()
             match opcao:
                 case 1:
-                    self.__controlador_cliente.abre_menu()
+                    self.controlador_cliente.abre_menu()
                 case 2:
                     self.__controlador_funcionario.abre_menu()
                 case 3:
-                    self.__controlador_item.abre_menu()
+                    self.controlador_item.abre_menu()
                 case 4:
-                    self.__controlador_local_armazenamento.abre_menu()
+                    self.controlador_local_armazenamento.abre_menu()
                 case 5:
                     self.__controlador_usuario.abre_menu()
+                case 6:
+                    return
                 case 0:
                     self.encerra_sistema()
                 case _:

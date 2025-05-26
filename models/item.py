@@ -54,3 +54,13 @@ class Item:
         
     def valor_esperado_venda(self):
         return self.__valor_entrada * (1 + self.__margem_lucro / 100) 
+    
+    def retorna_dados(self) -> dict:
+        return {
+            "nome": self.nome,
+            "descricao": self.descricao,
+            "valor_entrada": self.valor_entrada,
+            "margem_lucro": self.margem_lucro,
+            "quantidade_disponivel": self.quantidade_disponivel,
+            "valor_esperado_venda": self.valor_esperado_venda()
+        }

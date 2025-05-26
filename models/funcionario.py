@@ -3,20 +3,19 @@ from models.cargo import Cargo
 from datetime import datetime
 
 class Funcionario(Pessoa):
-    def __init__(self, nome: str, telefone: str, email: str, endereco: str, cpf: str, funcao:str, salario: float, data_contratacao: datetime):
-        Pessoa.__init__(self, nome, telefone, email, endereco, cpf)
-        Cargo.__init__(self, funcao, salario)
-        self.__data_contratacao = data_contratacao
+    def __init__(self, nome: str, telefone: str, email: str, endereco: str, cpf: str, registrador:str,  cargo: Cargo, data_cadastro: datetime):
+        super().__init__(nome, telefone, email, endereco, cpf, registrador, data_cadastro)
+        self.__cargo = cargo
         self.__historico_de_vendas = []
 
     @property
-    def data_contratacao(self) -> datetime:
-        return self.__data_contratacao
+    def cargo(self):
+        return self.__cargo
+    
+    @cargo.setter
+    def cargo(self, novo_cargo: Cargo):
+        self.__cargo = novo_cargo
         
-    @data_contratacao.setter
-    def data_contratacao(self, data_contratacao: datetime):
-        self.__data_contratacao = data_contratacao
-
     @property
     def historico_de_vendas(self):
         return self.__historico_de_vendas
@@ -24,6 +23,7 @@ class Funcionario(Pessoa):
     def retorna_dados(self):
         dados = super().retorna_dados()
         dados.update({
-
+            "funcao": self.__cargo.funcao,
+            "salario": self.__cargo.salario
         })
         return dados

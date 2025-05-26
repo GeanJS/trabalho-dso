@@ -5,6 +5,7 @@ class TelaSistema:
         print("1 - Cliente")
         print("2 - Itens")
         print("3 - Loca de Armazenamento")
+        print("4 - Retornar a tela de inicial")
         print("0 - Finalizar sistema")
         try:
             return int(input("Escolha uma opção: "))
@@ -19,6 +20,7 @@ class TelaSistema:
         print("3 - Itens")
         print("4 - Local de Armazenamento")
         print("5 - Usuario")
+        print("6 - Retornar a tela de inicial")
         print("0 - Finalizar sistema")
         try:
             return int(input("Escolha uma opção: "))

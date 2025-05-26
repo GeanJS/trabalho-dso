@@ -30,4 +30,8 @@ class ControladorLocalArmazenamento:
         self.__tela_local_armazenamento.mostra_locais_armazenamento(self.__locais_armazenamento)
 
     def retornar(self):
-        self.__controlador_sistema.inicializad_sistema()
+        usuario_logado = self.__controlador_sistema.usuario_logado
+        if usuario_logado.tipo == 'administrador':
+            self.__controlador_sistema.inicializa_sistema_administrador()
+        else:
+            self.__controlador_sistema.inicializa_sistema_funcionario()

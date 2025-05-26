@@ -61,6 +61,6 @@ class LocalArmazenamento:
         
     def retorna_itens(self) -> list:
         resultado = []
-        for item, quantidade in self._itens.items():
+        for item, quantidade in self.__itens.items():
             resultado.append((item.nome, quantidade))
         return resultado

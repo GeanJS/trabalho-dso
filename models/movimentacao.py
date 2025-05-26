@@ -5,9 +5,9 @@ from models.funcionario import Funcionario
 
 class Movimentacao(ABC):
     def __init__(self, data: datetime, quantidade: int, item: Item, funcionario: Funcionario):
-        self.data = data
-        self.quantidade = quantidade
-        self.item = item
+        self.__data = data
+        self.__quantidade = quantidade
+        self.__item = item
         self.__funcionario = funcionario
 
     @property
@@ -31,6 +31,10 @@ class Movimentacao(ABC):
     @property
     def item(self) -> Item: 
         return self.__item
+    
+    @item.setter
+    def item(self, novo_item: Item):
+        self.__item = novo_item
     
     def retorna_dados(self) -> dict:
         return {

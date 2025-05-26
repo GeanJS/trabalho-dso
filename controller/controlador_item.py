@@ -31,4 +31,8 @@ class ControladorItem:
         self.__tela_itens.mostra_itens(self.__itens)
 
     def retornar(self):
-        self.__controlador_sistema.inicia_sistema()
+        usuario_logado = self.__controlador_sistema.usuario_logado
+        if usuario_logado.tipo == 'administrador':
+            self.__controlador_sistema.inicializa_sistema_administrador()
+        else:
+            self.__controlador_sistema.inicializa_sistema_funcionario()

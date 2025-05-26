@@ -1,4 +1,5 @@
 from models.funcionario import Funcionario
+from models.cargo import Cargo
 from view.tela_funcionario import TelaFuncionario
 
 class ControladorFuncionario:
@@ -24,7 +25,21 @@ class ControladorFuncionario:
     
     def cadastrar_funcionario(self):
         dados = self.__tela_funcionario.pega_dados_funcionario()
-        funcionario = Funcionario(dados["nome"], dados["telefone"], dados["endereco"], dados["email"], dados["cpf"],dados ["funcao"], dados["salario"], dados["data_contratacao"])
+        usuario_logado = self.__controlador_sistema.usuario_logado
+        
+        cargo = Cargo(funcao=dados["funcao"], salario=dados["salario"])
+        
+        funcionario = Funcionario(
+            nome=dados["nome"],
+            telefone=dados["telefone"],
+            endereco=dados["endereco"],
+            email=dados["email"],
+            cpf=dados["cpf"],
+            registrador=usuario_logado.nome,
+            cargo=cargo,
+            data_cadastro=dados["data_cadastro"]
+            )
+           
         self.__funcionarios.append(funcionario)
         self.__tela_funcionario.mostra_mensagem("Funcionario cadastrado com sucesso!!")
     
@@ -32,4 +47,8 @@ class ControladorFuncionario:
         self.__tela_funcionario.mostra_funcionarios(self.__funcionarios)
                 
     def retornar(self):
-        self.__controlador_sistema.inicia_sistema()
+        usuario_logado = self.__controlador_sistema.usuario_logado
+        if usuario_logado.tipo == 'administrador':
+            self.__controlador_sistema.inicializa_sistema_administrador()
+        else:
+            self.__controlador_sistema.inicializa_sistema_funcionario()

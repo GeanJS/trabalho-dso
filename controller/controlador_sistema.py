@@ -11,8 +11,8 @@ class ControladorSistema:
             usuario = self.__controlador_usuario.iniciar()
 
             if usuario.tipo == 'administrador':
-                controlador_admin = ControladorSistemaAdministrador(self)
+                controlador_admin = ControladorSistemaAdministrador(self, usuario)
                 controlador_admin.inicializa_sistema_administrador()
             elif usuario.tipo == 'funcionario':
-                controlador_func = ControladorSistemaFuncionario(self)
+                controlador_func = ControladorSistemaFuncionario(self, usuario)
                 controlador_func.inicializa_sistema_funcionario()

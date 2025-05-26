@@ -2,13 +2,13 @@ from models.usuario import Usuario
 from view.tela_usuario import TelaUsuario
 
 class ControladorUsuario:
-    def __init__(self, controlador_sistema):
+    def __init__(self, controlador_sistema_administrador):
         self.__usuarios = [
             Usuario('admin', 'admin', 'administrador'),
             Usuario('geanjair', '123', 'funcionario'),
         ]
         self.__tela_usuario = TelaUsuario()
-        self.__controlador_sistema = controlador_sistema
+        self.__controlador_sistema_administrador = controlador_sistema_administrador
         
     def iniciar(self):
         while True:
@@ -65,4 +65,4 @@ class ControladorUsuario:
         self.__tela_usuario.listar_usuarios(self.__usuarios)
 
     def retornar(self):
-        self.__controlador_sistema.inicia_sistema()
+        self.__controlador_sistema_administrador.inicializa_sistema_administrador()
