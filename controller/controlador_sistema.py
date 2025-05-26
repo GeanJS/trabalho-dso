@@ -8,11 +8,21 @@ class ControladorSistema:
         self.__usuarios = [
             Usuario('admin', 'admin', 'administrador'),
         ]
+        self.__itens = []
+        self.__clientes = []
         self.__controlador_usuario = ControladorUsuario(self, self.__usuarios)
 
     @property
     def lista_usuarios(self):
         return self.__usuarios
+    
+    @property
+    def lista_itens(self):
+        return self.__itens
+    
+    @property
+    def lista_clientes(self):
+        return self.__clientes
     
     def inicia_sistema(self):
         while True:
@@ -23,8 +33,8 @@ class ControladorSistema:
                 exit(0)
                 
             if usuario.tipo == 'administrador':
-                controlador_admin = ControladorSistemaAdministrador(self, usuario)
+                controlador_admin = ControladorSistemaAdministrador(self, usuario, self.__itens, self.__clientes)
                 controlador_admin.inicializa_sistema_administrador()
             elif usuario.tipo == 'funcionario':
-                controlador_func = ControladorSistemaFuncionario(self, usuario)
+                controlador_func = ControladorSistemaFuncionario(self, usuario, self.__itens, self.__clientes)
                 controlador_func.inicializa_sistema_funcionario()
