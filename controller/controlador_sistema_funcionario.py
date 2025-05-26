@@ -46,7 +46,7 @@ class ControladorSistemaFuncionario:
                 case 3:
                     self.__controlador_local_armazenamento.abre_menu()
                 case 4:
-                    return
+                    self.__controlador_sistema.inicia_sistema()
                 case 0:
                     self.encerra_sistema()
                 case _:

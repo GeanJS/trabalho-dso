@@ -31,7 +31,7 @@ class ControladorSistemaAdministrador(ControladorSistemaFuncionario):
                 case 5:
                     self.__controlador_usuario.abre_menu()
                 case 6:
-                    return
+                    self.__controlador_sistema.inicia_sistema()
                 case 0:
                     self.encerra_sistema()
                 case _:

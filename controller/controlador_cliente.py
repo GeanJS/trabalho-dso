@@ -61,14 +61,21 @@ class ControladorCliente:
             if novos_dados is None:
                 self.__tela_cliente.mostra_mensagem("Edicao cancelada")
                 return
-            
-            cliente.nome = novos_dados["nome"]
-            cliente.telefone = novos_dados["telefone"]
-            cliente.endereco = novos_dados["endereco"]
-            cliente.email = novos_dados["email"]
-            cliente.cpf = novos_dados["cpf"]
-            
-            self.__tela_cliente.mostra_mensagem("Cliente editado com sucesso")
+            try:
+                if confirma_acao(f"Tem certeza que deseja editar o cliente {cliente.nome}?"):
+                    cliente.nome = novos_dados["nome"]
+                    cliente.telefone = novos_dados["telefone"]
+                    cliente.endereco = novos_dados["endereco"]
+                    cliente.email = novos_dados["email"]
+                    cliente.cpf = novos_dados["cpf"]
+                    
+                    self.__tela_cliente.mostra_mensagem("Cliente editado com sucesso")
+                    
+            except KeyboardInterrupt:
+                print("\nEdicao Interrompida\n")
+            except Exception as e:
+                print(f"Ocorreu um erro inesperado: {e}")   
+                
         else:
             self.__tela_cliente.mostra_mensagem("Indice invalido")
             
@@ -82,11 +89,18 @@ class ControladorCliente:
         if 0<= indice < len(self.__clientes):
             cliente = self.__clientes[indice]
             
-            if confirma_acao(f"Tem certeza que deseja remover o cliente {cliente.nome}?"):
-                self.__clientes.pop(indice)
-                self.__tela_cliente.mostra_mensagem(f"Cliente {cliente.nome} removido com sucesso")
-            else:
-                self.__tela_cliente.mostra_mensagem("Remocao cancelada")
+            try:
+                if confirma_acao(f"Tem certeza que deseja remover o cliente {cliente.nome}?"):
+                    self.__clientes.pop(indice)
+                    self.__tela_cliente.mostra_mensagem(f"Cliente {cliente.nome} removido com sucesso")
+                else:
+                    self.__tela_cliente.mostra_mensagem("Remocao cancelada")
+                    
+            except KeyboardInterrupt:
+                print("\nEdicao Interrompida\n")
+            except Exception as e:
+                print(f"Ocorreu um erro inesperado: {e}")
+                
         else:
             self.__tela_cliente.mostra_mensagem("Indice invalido")
     

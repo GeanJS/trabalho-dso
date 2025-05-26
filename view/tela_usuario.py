@@ -12,9 +12,14 @@ class TelaUsuario:
     
     def pegar_dados_usuario(self):
         print("\n-- Login na Lojinhainha --")
-        nome = input("Nome de Usuario: ")
-        senha = input("Senha: ")
-        return {"nome": nome, "senha": senha}
+        try:
+            nome = input("Nome de Usuario: ")
+            senha = input("Senha: ")
+            return {"nome": nome, "senha": senha}
+        except KeyboardInterrupt:
+            print("\nPrograma Finalizado Forçadamente")
+        except Exception as e:
+            print("\nOcorreu um erro inesperado: {e}")
     
     def pegar_dados_cadastro_usuario(self):
         print("\n-- Login na Lojinhainha --")
