@@ -6,11 +6,9 @@ class Cliente(Pessoa):
         super().__init__(nome, telefone, email, endereco, cpf, registrador, data_cadastro)
         self.__historico_de_compras = []
         
-    @property    
-    def historico_de_compras(self):
+    @property
+    def historico_de_compras(self) -> list:
         return self.__historico_de_compras
     
     def retorna_dados(self):
-        dados = super().retorna_dados()
-        return dados
-    
+        return super().retorna_dados()

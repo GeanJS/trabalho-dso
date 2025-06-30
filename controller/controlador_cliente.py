@@ -1,6 +1,7 @@
 from models.cliente import Cliente
 from view.tela_cliente import TelaCliente
 from utils.validacao import confirma_acao
+import pickle
 
 class ControladorCliente:
     def __init__(self, controlador_sistema, clientes: list):
