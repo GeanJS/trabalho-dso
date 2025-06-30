@@ -2,6 +2,8 @@ from models.funcionario import Funcionario
 from models.cargo import Cargo
 from view.tela_funcionario import TelaFuncionario
 from utils.validacao import confirma_acao
+from utils.validacao import ValidacaoDados
+from exceptions.validation_exceptions import ValidationException
 
 class ControladorFuncionario:
     def __init__(self, controlador_sistema):
@@ -31,10 +33,30 @@ class ControladorFuncionario:
     def cadastrar_funcionario(self):
         dados = self.__tela_funcionario.pega_dados_funcionario()
         usuario_logado = self.__controlador_sistema.usuario_logado
+
         if dados is None:
             self.__tela_funcionario.mostra_mensagem("Cadastro cancelado")
             return
+    
+        try:
+            dados_validados = ValidacaoDados.validar_tudo(dados)
         
+            if self._cpf_ja_existe(dados_validados["cpf"]):
+                raise ValidationException("cpf", "CPF já cadastradado no sistema")
+            
+            funcionario = Funcionario(
+                nome = dados_validados["nome"],
+                cpf = dados_validados["cpf"]
+            )
+            
+            self.__funcionarios.append(funcionario)
+            self.__tela_funcionario.mostra_mensagem("Funcionário cadastrado com sucesso!")
+
+        except ValidationException as e:
+            self.__tela_funcionario.mostra_mensagem(f"Erro de validação: {e.mensagem}")
+        except Exception as e:
+            self.__tela_funcionario.mostra_mensagem(f"Erro inesperado: {str(e)}")
+    
         cargo = Cargo(funcao=dados["funcao"], salario=dados["salario"])
         
         funcionario = Funcionario(
@@ -50,7 +72,7 @@ class ControladorFuncionario:
            
         self.__funcionarios.append(funcionario)
         self.__tela_funcionario.mostra_mensagem("Funcionario cadastrado com sucesso!!")
-    
+
     def listar_funcionarios(self):
         self.__tela_funcionario.mostra_funcionarios(self.__funcionarios)
 
@@ -88,6 +110,12 @@ class ControladorFuncionario:
                 
         else:
             self.__tela_funcionario.mostra_mensagem("Indice invalido")
+    
+    def _cpf_ja_existe(self, cpf):
+        return any(funcionario.cpf == cpf for funcionario in self.__funcionarios)
+    
+    def _email_ja_existe(self, email):
+        return any(funcionario.email == email for funcionario in self.__funcionarios)
 
     def remover_funcionario(self):
         if not self.__funcionarios:
