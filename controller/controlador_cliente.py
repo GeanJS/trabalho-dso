@@ -4,8 +4,8 @@ from utils.validacao import confirma_acao
 import pickle
 
 class ControladorCliente:
-    def __init__(self, controlador_sistema):
-        self.__clientes = []
+    def __init__(self, controlador_sistema, clientes: list):
+        self.__clientes = clientes
         self.__controlador_sistema = controlador_sistema
         self.__tela_cliente = TelaCliente()
     

@@ -1,9 +1,10 @@
 from models.item import Item
 from view.tela_itens import TelaItens
+from utils.validacao import confirma_acao
 
 class ControladorItem:
-    def __init__(self, controlador_sistema):
-        self.__itens = []
+    def __init__(self, controlador_sistema, itens: list):
+        self.__itens = itens
         self.__controlador_sistema = controlador_sistema
         self.__tela_itens = TelaItens()
     
@@ -25,6 +26,9 @@ class ControladorItem:
 
     def cadastrar_item(self):
         dados = self.__tela_itens.pega_dados_itens()
+        if dados is None:
+            self.__tela_itens.mostra_mensagem("Cadastro Cancelado")
+            return
         item_existente = self.buscar_item_por_codigo_e_descricao(dados["codigo"], dados["descricao"])
         
         if item_existente:
@@ -34,17 +38,64 @@ class ControladorItem:
             novo_item = Item(
                 dados["codigo"],
                 dados["descricao"],
-                dados["valor_entrada"],
-                dados["margem_lucro"],
-                dados["data_cadastro"],
-                dados["quantidade_disponivel"]
+                dados["local"],
             )
             self.__itens.append(novo_item)
             self.__tela_itens.mostra_mensagem("Item adicionado com sucesso!")
 
     def remover_item(self):
-        pass
+        if not self.__itens:
+            self.__tela_itens.mostra_mensagem("Nenhum cliente cadastrado para remover")
+            return
 
+        indice = self.__tela_itens.seleciona_item(self.__itens)
+        
+        if 0<= indice < len(self.__itens):
+            item = self.__itens[indice]
+            
+            try:
+                if confirma_acao(f"Tem certeza que deseja remover o cliente {item.descricao}?"):
+                    self.__itens.pop(indice)
+                    self.__tela_itens.mostra_mensagem(f"Item {item.descricao} removido com sucesso")
+                else:
+                    self.__tela_itens.mostra_mensagem("Remocao cancelada")
+                    
+            except KeyboardInterrupt:
+                print("\nEdicao Interrompida\n")
+            except Exception as e:
+                print(f"Ocorreu um erro inesperado: {e}")
+                
+        else:
+            self.__tela_itens.mostra_mensagem("Indice invalido")
+
+    def editar_item(self):
+        if not self.__itens:
+            self.__tela_itens.mostra_mensagem("Nenhum cliente cadastrado para editar")
+            return
+        
+        indice = self.__tela_itens.seleciona_item(self.__itens)
+        
+        if 0 <= indice < len(self.__itens):
+            item = self.__itens[indice]
+            novos_dados = self.__tela_itens.pega_dados_itens()
+            if novos_dados is None:
+                self.__tela_itens.mostra_mensagem("Edicao cancelada")
+                return
+            try:
+                if confirma_acao(f"Tem certeza que deseja editar o item {item.descricao}?"):
+                    item.codigo = novos_dados["codigo"]
+                    item.descricao = novos_dados["descricao"]
+                    item.local = novos_dados["local"]
+                    
+                    self.__tela_itens.mostra_mensagem("Cliente editado com sucesso")
+                    
+            except KeyboardInterrupt:
+                print("\nEdicao Interrompida\n")
+            except Exception as e:
+                print(f"Ocorreu um erro inesperado: {e}")   
+                
+        else:
+            self.__tela_itens.mostra_mensagem("Indice invalido")
 
     def listar_itens(self):
         self.__tela_itens.mostra_itens(self.__itens)
