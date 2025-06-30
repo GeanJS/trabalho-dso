@@ -43,3 +43,6 @@ class LocalArmazenamentoDAO:
 
     def lista(self):
         return self.__locais
+    
+    def objetos_internos(self):
+        return self.__locais

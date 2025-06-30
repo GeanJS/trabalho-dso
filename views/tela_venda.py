@@ -127,18 +127,18 @@ class TelaVenda:
         return self.__quantidade
     
     def mostra_vendas(self, vendas: list):
-        self.__janela = customtkinter.CTk()
-        self.__janela.title("Histórico de Vendas")
-        self.__janela.geometry("600x600")
+        self.__janela_lista = customtkinter.CTk()
+        self.__janela_lista.title("Histórico de Vendas")
+        self.__janela_lista.geometry("600x600")
 
-        titulo = customtkinter.CTkLabel(self.__janela, text="Histórico de Vendas", font=("Arial", 16))
+        titulo = customtkinter.CTkLabel(self.__janela_lista, text="Histórico de Vendas", font=("Arial", 16))
         titulo.pack(pady=10)
 
         if not vendas:
-            label = customtkinter.CTkLabel(self.__janela, text="Nenhuma venda registrada.")
+            label = customtkinter.CTkLabel(self.__janela_lista, text="Nenhuma venda registrada.")
             label.pack(pady=20)
         else:
-            quadro_scroll = customtkinter.CTkScrollableFrame(self.__janela, width=550, height=450)
+            quadro_scroll = customtkinter.CTkScrollableFrame(self.__janela_lista, width=550, height=450)
             quadro_scroll.pack(pady=10)
 
             for venda in vendas:
@@ -147,20 +147,20 @@ class TelaVenda:
 
                 for item, qtd in venda.itens:
                     texto += f"  - {item.descricao} (Código: {item.codigo})\n" \
-                             f"    Quantidade: {qtd}\n" \
-                             f"    Valor Unitário: R$ {item.valor_esperado_da_venda():.2f}\n" \
-                             f"    Subtotal: R$ {item.valor_esperado_da_venda() * qtd:.2f}\n"
+                            f"    Quantidade: {qtd}\n" \
+                            f"    Valor Unitário: R$ {item.valor_esperado_da_venda():.2f}\n" \
+                            f"    Subtotal: R$ {item.valor_esperado_da_venda() * qtd:.2f}\n"
 
                 texto += f"Valor Total da Venda: R$ {venda.valor_total():.2f}\n------------------------"
 
                 label = customtkinter.CTkLabel(quadro_scroll, text=texto, justify="left", anchor="w")
                 label.pack(padx=10, pady=10, fill="x")
 
-        btn_voltar = customtkinter.CTkButton(self.__janela, text="Voltar", command=self.__janela.destroy)
-        btn_voltar.pack(pady=15)
+        botao_voltar = customtkinter.CTkButton(self.__janela_lista, text="Retornar ao menu", command=self.__janela_lista.quit)
+        botao_voltar.pack(pady=15)
 
-        self.__janela.mainloop()
-        self.__janela.destroy()
+        self.__janela_lista.mainloop()
+        self.__janela_lista.destroy()
 
     def pergunta_continuar(self):
         self.__resposta = None

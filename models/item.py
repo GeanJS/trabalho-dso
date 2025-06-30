@@ -57,4 +57,3 @@ class Item:
             "margem_lucro": self.__margem_lucro,
             "quantidade_disponivel": self.__quantidade_disponivel
         }
-
